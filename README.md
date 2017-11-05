@@ -1,4 +1,4 @@
-# TO MAKE IT WORK RUN
+# TO MAKE IT WORK, run in app folder:
 
  bundle install --without production
 
