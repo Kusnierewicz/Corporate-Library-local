@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Google Auth Example App</title>
+    <title>mfind Corporate Library</title>
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
   </head>
+
   <body>
-    <div>
-      <% if current_user %>
-        Signed in as <strong><%= current_user.name %></strong>!
-        <%= link_to "Sign out", signout_path, id: "sign_out" %>
-      <% else %>
-        <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-      <% end %>
+  	<header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "Corporate Library", '/', id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if logged_in? %>
+              <li><%= link_to "Home",   '/' %></li>
+              <li><%= link_to "Books",   '/books' %></li>
+              <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
+            <% else %>
+              <li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
+            <% end %>
+            <% if logged_in? && current_user.name == "Łukasz Urzędowski" %>
+                <li><%= link_to "Users",   '/users' %></li>
+              <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+    	<%= yield %>
     </div>
-    <div>
-    <%= yield %>
-    </div>
+    <footer class="footer">
+  <small>
+    Developed by Łukasz Urzędowski</a>
+  </small>
+  <nav>
+    <%= link_to image_tag("mfind.png", alt: "Rails logo"),'http://mfind.pl/' %>
+    <ul>
+
+
+    </ul>
+  </nav>
+</footer>
   </body>
 </html>

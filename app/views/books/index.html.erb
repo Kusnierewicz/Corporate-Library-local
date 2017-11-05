@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Books</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Details</th>
+      <th>State</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.details %></td>
+        <% if book.is_borrowed == '' || !book.is_borrowed %>
+          <td><%= 'avalible' %></td>
+          <td><%= link_to 'Borrow', book_path(book, book: {is_borrowed: current_user.name}), method: :put %></td>
+        <% else %>
+          <td><%= 'unavalible' %></td>
+
+        <% end %>
+        <% if book.is_borrowed == current_user.name %>
+          <td><%= link_to 'Return', book_path(book, book: {is_borrowed: ''}), method: :put %></td>
+        <% elsif book.is_borrowed == '' && book.is_borrowed != current_user.name %>
+
+        <% end %>
+
+        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td><%= link_to 'Rental history', book %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add New Book', new_book_path %>

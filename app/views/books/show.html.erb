@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
+
+<p>
+  <strong>Details:</strong>
+  <%= @book.details %>
+</p>
+<% if @book.is_borrowed %>
+	<p>
+	  <strong>Borrowed by:</strong>
+	  <%= @book.is_borrowed %>
+	</p>
+<% else %>
+	<p>
+	  <strong>Rental Status:</strong>
+	  <%= 'is avalible' %>
+	</p>
+<% end %>
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>

@@ -1,13 +1,13 @@
 require 'test_helper'
 
-class SessionsControllerTest < ActionDispatch::IntegrationTest
+class SessionsControllerTest < ActionController::TestCase
   test "should get create" do
-    get sessions_create_url
+    get :create
     assert_response :success
   end
 
   test "should get destroy" do
-    get sessions_destroy_url
+    get :destroy
     assert_response :success
   end
 

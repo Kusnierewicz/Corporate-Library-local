@@ -5,6 +5,7 @@ Oath2Test::Application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
-
-  root to: "home#show"
+  resources :users, only: [:index]
+  resources :books
+  root to: 'static_pages#home'
 end
